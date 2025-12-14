@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: django-app
-        image: ghcr.io/your-username/django-kubernetes-app:latest
+        image: ghcr.io/EvGeN1Yj/django-kubernetes-app:latest
         ports:
         - containerPort: 8000
         envFrom:
