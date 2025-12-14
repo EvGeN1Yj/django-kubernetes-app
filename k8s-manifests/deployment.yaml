@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: django-app
-        image: ghcr.io/EvGeN1Yj/django-kubernetes-app:latest
+        image: ghcr.io/evgen1yj/django-kubernetes-app:latest
         ports:
         - containerPort: 8000
         envFrom:
@@ -32,6 +32,20 @@ spec:
         env:
         - name: DB_NAME
           value: "django_prod"
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: django-secrets
+              key: db_user
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: django-secrets
+              key: db_password
+        - name: DB_HOST
+          value: "postgres-service"
+        - name: DB_PORT
+          value: "5432"
         livenessProbe:
           httpGet:
             path: /health/
